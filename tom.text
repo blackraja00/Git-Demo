@@ -4,3 +4,35 @@ thiru love nivi
   10   20
  / \   / \
 8  12 17  25
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    else:
+        if root.val < key:
+            root.right = insert(root.right, key)
+        else:
+            root.left = insert(root.left, key)
+    return root
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val, end=" ")
+        inorder(root.right)
+
+# Driver code
+r = Node(15)
+r = insert(r, 10)
+r = insert(r, 20)
+r = insert(r, 8)
+r = insert(r, 12)
+r = insert(r, 17)
+r = insert(r, 25)
+
+inorder(r)  # Output: 8 10 12 15 17 20 25
